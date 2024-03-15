@@ -6,49 +6,11 @@
 /*   By: ede-cola <ede-cola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:42:14 by ede-cola          #+#    #+#             */
-/*   Updated: 2024/03/05 16:40:32 by ede-cola         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:57:25 by ede-cola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_talk.h"
-
-// void	handler(int signum)
-// {
-// 	static char	c;
-// 	static int	i;
-
-// 	if (signum == SIGUSR1)
-// 		c |= (1 << i);
-// 	i++;
-// 	if (i == 8)
-// 	{
-// 		if (c == '\0')
-// 		{
-// 			ft_printf("%c", '\n');
-// 			i = 0;
-// 		}
-// 		else
-// 		{
-// 			ft_printf("%c", c);
-// 			i = 0;
-// 			c = 0;
-// 		}
-// 	}
-// }
-
-// int	main(void)
-// {
-// 	int		pid;
-
-// 	pid = getpid();
-// 	ft_printf("Server PID: %d\n", pid);
-// 	while (1)
-// 	{
-// 		signal(SIGUSR1, handler);
-// 		signal(SIGUSR2, handler);
-// 	}
-// 	return (0);
-// }
 
 void	handler(int signum, siginfo_t *info, void *context)
 {

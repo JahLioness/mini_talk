@@ -28,32 +28,34 @@ NC = \033[0m
 all: $(SERVER) $(CLIENT)
 
 $(SERVER): $(OBJ_SERV) $(HEADER) $(LIBFT)
-	@$(CC) $(CFLAGS) -o $(SERVER) $(OBJ_SERV) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(SERVER) $(OBJ_SERV) $(LIBFT)
 	@echo "$(GREEN)		*----------------------------------*\n \
-			|        [OK] $(SERVER) created        |\n \
+			|        [OK] $(SERVER) created       |\n \
 			*----------------------------------*$(NC)"
 
 $(CLIENT): $(OBJ_CLIE) $(HEADER) $(LIBFT)
-	@$(CC) $(CFLAGS) -o $(CLIENT) $(OBJ_CLIE) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(CLIENT) $(OBJ_CLIE) $(LIBFT)
 	@echo "$(BLUE)		*----------------------------------*\n \
-			|        [OK] $(CLIENT) created        |\n \
+			|        [OK] $(CLIENT) created       |\n \
 			*----------------------------------*$(NC)"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
-	@make -sC libft
-	@echo "$(CYAN)[OK]$(NC) libft created"
+	@make -C libft
+	@echo "$(CYAN)		*----------------------------------*\n \
+			|    [OK] $(LIBFT) created    |\n \
+			*----------------------------------*$(NC)"
 
 clean:
-	@rm -f $(OBJ_SERV) $(OBJ_CLIE)
-	@make -sC libft clean
+	rm -f $(OBJ_SERV) $(OBJ_CLIE)
+	@make -C libft clean
 	@echo "$(PURPLE)[OK]$(NC) mini_talk clean completed"
 
 fclean: clean
-	@rm -f $(SERVER) $(CLIENT)
-	@make -sC libft fclean
+	rm -f $(SERVER) $(CLIENT)
+	@make -C libft fclean
 	@echo "$(PURPLE)[OK]$(NC) mini_talk fclean completed"
 
 re: fclean all
