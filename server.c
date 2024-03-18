@@ -6,16 +6,24 @@
 /*   By: ede-cola <ede-cola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:42:14 by ede-cola          #+#    #+#             */
-/*   Updated: 2024/03/15 16:57:25 by ede-cola         ###   ########.fr       */
+/*   Updated: 2024/03/18 18:02:27 by ede-cola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_talk.h"
 
+void	ft_print_str(char *str, siginfo_t *info)
+{
+	ft_printf("%s\n", str);
+	free(str);
+	kill(info->si_pid, SIGUSR2);
+}
+
 void	handler(int signum, siginfo_t *info, void *context)
 {
 	static char	c;
 	static int	i;
+	static char	*str;
 
 	(void)context;
 	if (signum == SIGUSR1)
@@ -25,17 +33,17 @@ void	handler(int signum, siginfo_t *info, void *context)
 	{
 		if (c == '\0')
 		{
-			ft_printf("\n");
-			kill(info->si_pid, SIGUSR2);
+			ft_print_str(str, info);
 			i = 0;
+			str = NULL;
 			return ;
 		}
+		if (!str)
+			str = ft_strdup_str(&c);
 		else
-		{
-			ft_printf("%c", c);
-			i = 0;
-			c = 0;
-		}
+			str = ft_strjoin_str(str, &c);
+		i = 0;
+		c = 0;
 	}
 	kill(info->si_pid, SIGUSR1);
 }

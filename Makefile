@@ -6,7 +6,7 @@ SERVER = server
 
 CLIENT = client
 
-SRC_SERV = server.c
+SRC_SERV = server.c utils.c
 
 SRC_CLIE = client.c
 
